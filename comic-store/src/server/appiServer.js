@@ -3,9 +3,9 @@ const express = require('express');
 const passport = require('passport');
 require('./authentication/passport');
 const auth = require('./middlewares/auth.middleware');
-const appilogingRouter = require('./router/appiLoging');
-const appiregisterRouter = require('./router/appiRegister');
-const appicomicsRouter = require('./router/appiComics');
+const appilogingRouter = require('./router/appiLoging.router');
+const appiregisterRouter = require('./router/appiRegister.router');
+const appicomicsRouter = require('./router/appiComics.router');
 const appidb = require('./appidb');
 const logger =require('./middlewares/logger.middleware');
 

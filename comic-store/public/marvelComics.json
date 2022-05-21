@@ -10,11 +10,13 @@
         "isactive":false,
         "colletion":"ultimate Spider-man",
         "issues":166,
-        "id":1
+        "id":1,
+        "page":["https://2.bp.blogspot.com/-syJu4Ev_F7M/Vnp66Xe53JI/AAAAAAAASjA/-suVzSTxBTM/s0-Ic42/RCO010.jpg"]
     },
     {
         "hero": "Daredevil",
         "nameHero":"Matt Murdock",
+        
         "writer": "Chip Zdarsky",
         "year": 2019,
         "description": "Daredevils origins come from an accident he had in his childhood which gave him special abilities.neighborhood of Hells Kitchen.",

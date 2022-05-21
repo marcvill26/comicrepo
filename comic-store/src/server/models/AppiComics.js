@@ -10,7 +10,7 @@ const comicsSchema = new Schema({
         description: {type: String},
         penciler:{type: String},
         image:{type: String},
-        colletion:{type: String},
+       
         issues:{type: Number, required:true},
         id: {type: Number},
 },{
