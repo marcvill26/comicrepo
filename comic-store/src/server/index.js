@@ -2,9 +2,9 @@ const appiConfig = require('./appiConfig');
 const express = require('express');
 const passport = require('passport');
 require('./authentication/passport');
-const auth = require('./middlewares/auth.middleware');
-const appilogingRouter = require('./router/appiLoging.router');
-const appiregisterRouter = require('./router/appiRegister.router');
+const {auth} = require('./middlewares/auth.middleware');
+
+const userRouter = require('./router/user.router');
 const appicomicsRouter = require('./router/appiComics.router');
 const appidb = require('./appidb');
 const logger =require('./middlewares/logger.middleware');
@@ -23,9 +23,9 @@ appiserver.get('/', (req, res) =>{
     res.status(200).send('Server is up & running');
 });
 
-appiserver.use('/AppiUserLoging',[logger], appilogingRouter);
+
 appiserver.use('/AppiComics',[logger], appicomicsRouter);
-appiserver.use('/AppiRegisterUser',[logger, auth.isAuthenticated], appiregisterRouter);
+appiserver.use('/AppiRegisterUser',[logger, auth.isAuthenticated],userRouter);
 
 appiserver.use('*',(req, res, next) =>{
     const error = new Error('Ruta no encontradas');
