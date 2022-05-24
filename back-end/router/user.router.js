@@ -7,10 +7,10 @@ const { signIn } = require('../authentication/jsonwebtoken');
 const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 
-const usuariosRouter = express.Router();
+const usersRouter = express.Router();
 
 
-usuariosRouter.post('/Register', (req, res, next) => {
+usersRouter.post('/Register', (req, res, next) => {
 
     const callback = (error, usuario) => {
 
@@ -34,7 +34,7 @@ usuariosRouter.post('/Register', (req, res, next) => {
 
 });
 
-usuariosRouter.post('/login', (req, res, next) => {
+usersRouter.post('/login', (req, res, next) => {
 
     const callback = (error, usuario) => {
 
@@ -57,7 +57,7 @@ usuariosRouter.post('/login', (req, res, next) => {
 });
 
 
-usuariosRouter.post('/logout', [isAuthenticated], (req, res, next) => {
+usersRouter.post('/logout', [isAuthenticated], (req, res, next) => {
 
     // if (!req.authority) {
 
@@ -75,4 +75,4 @@ usuariosRouter.post('/logout', [isAuthenticated], (req, res, next) => {
 
 
 
-module.exports = usuariosRouter;
+module.exports = usersRouter;
