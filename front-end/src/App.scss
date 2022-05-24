@@ -1,0 +1,18 @@
+@import './components/NavBar/navBar';
+
+@import './pages/Home/homeStyle';
+@import './pages/Marvelcomics/marvelStyles';
+@import './pages/DcComics/dcComicsStyle';
+@import './pages/Shop/shopStyle';
+@import './pages/Register/registerStyle';
+@import './components/Footer/footer';
+.App {
+  font-family: 'Russo One', sans-serif;
+}
+body{
+  font-family: 'Russo One', sans-serif;
+  background-color:#ef476f;
+  margin: 0;
+  padding: 0;
+}
+
