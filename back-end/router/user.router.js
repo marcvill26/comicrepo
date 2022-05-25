@@ -1,63 +1,42 @@
 const express = require('express');
-
 const passport = require('passport');
-
 const { signIn } = require('../authentication/jsonwebtoken');
-
 const { isAuthenticated } = require('../middlewares/auth.middleware');
 
+const usersRouter = express.Router();
 
-const usuariosRouter = express.Router();
+usersRouter.post('/register', (req, res, next) => {
 
-
-usuariosRouter.post('/Register', (req, res, next) => {
-
-    const callback = (error, usuario) => {
-
+    const callback = (error, user) => {
         if (error) {
-
-            console.log('Error al entrar en callback', error);
-
+            console.log('Error entering callback', error);
             return next(error);
-
         }
-
-
-
-        return res.status(201).json(usuario);
-
+        return res.status(201).json(user);
     };
 
-
-
-    passport.authenticate('registro', callback)(req);
+    passport.authenticate('register', callback)(req);
 
 });
 
-usuariosRouter.post('/login', (req, res, next) => {
+usersRouter.post('/login', (req, res, next) => {
 
-    const callback = (error, usuario) => {
-
+    const callback = (error, user) => {
         if (error) {
-
             return next(error);
-
         }
 
-        const token = signIn(usuario, req.app.get('jwt-secret'));
+        const token = signIn(user, req.app.get('jwt-secret'));
 
-        return res.status(200).json({ userId: usuario._id, token });
-
+        return res.status(200).json({ userId: user._id, token });
     };
-
-
 
     passport.authenticate('login', callback)(req);
 
 });
 
 
-usuariosRouter.post('/logout', [isAuthenticated], (req, res, next) => {
+usersRouter.post('/logout', [isAuthenticated], (req, res, next) => {
 
     // if (!req.authority) {
 
@@ -67,12 +46,8 @@ usuariosRouter.post('/logout', [isAuthenticated], (req, res, next) => {
 
     // }
 
-
-
-    return res.status(200).json('Cerrada sesión de usuario');
+    return res.status(200).json('Closed user session');
 
 });
 
-
-
-module.exports = usuariosRouter;
+module.exports = usersRouter;

@@ -1,4 +1,4 @@
-const multer = require('multer');
+/* const multer = require('multer');
 const path = require('path');
 //const fs = require('fs');
 const cloudinary = require('cloudinary').v2;
@@ -45,4 +45,4 @@ const uploadCloudinary = async (req, res, next) => {
 
  
 
-module.exports = { upload, uploadCloudinary };
+module.exports = { upload, uploadCloudinary }; */

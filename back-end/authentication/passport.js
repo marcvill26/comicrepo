@@ -2,8 +2,7 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const bcrypt = require('bcrypt');
 
-const User = require('../models/AppiUsers');
-const { isValidPassword, isValidEmail } = require('./validators');
+const User = require('../models/User');
 
 const LocalStrategy = passportLocal.Strategy;
 
@@ -18,19 +17,16 @@ passport.use('register',
         },
         async (req, username, password, done) => {
             try {
-                // 1. Buscar si el usuario existe en la DB
+
                 const userExists = await User.findOne({ email: username });
 
-                // 2. Si el usuario ya existe, salimos con un error
                 if (userExists) {
                     const error = new Error('User already registered');
                     return done(error);
                 }
 
-                // 3. Encriptar la contraseña
                 const passwordEncrypted = await bcrypt.hash(password, SALT_ROUNDS);
 
-                // 4. Crear el documento del Usuario para guardarlo en DB
                 const newUser = new User({
                     email: username,
                     password: passwordEncrypted,
@@ -38,10 +34,8 @@ passport.use('register',
                 });
                 const userSaved = await newUser.save();
 
-                // 4.1. Eliminar contrasena del nuevoUsuario para no mandarlo en la respuesta
                 userSaved.password = undefined;
 
-                // 5. Retornar OK/KO
                 done(null, userSaved);
             } catch(error) {
                 return done(error);
@@ -68,10 +62,10 @@ passport.use('login',
                 }
 
                 // 3. Comparar contraseñas
-                const isPwdValid = await bcrypt.compare(password, user.contrasena);
+                const isValidPassword = await bcrypt.compare(password, user.contrasena);
 
                 // 4. Si la contraseña no es valida, fallamos
-                if (!isPwdValid) {
+                if (!isValidPassword) {
                     const error = new Error('Password is not valid');
                     return done(error);
                 }
@@ -96,3 +90,5 @@ passport.deserializeUser(async (userId, done) => {
         return done(error);
     }
 });
+
+module.exports = { passport }
