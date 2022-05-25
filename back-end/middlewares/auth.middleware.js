@@ -4,15 +4,15 @@ const isAuthenticated = (req, res, next) => {
   const authorization = req.headers.authorization;
 
   if (!authorization) {
-    return res.status(401).json('No está autorizado.');
+    return res.status(401).json('Not authorized');
   };
 
-  const separados = authorization.split(' ')
-  if (separados.length !== 2 || separados[0] !== 'Bearer') {
-    return res.status(400).json('Cabecera de auth incorrecta');
+  const separated = authorization.split(' ')
+  if (separated.length !== 2 || separated[0] !== 'Bearer') {
+    return res.status(400).json('Authorization incorrect');
   }
 
-  const [, token] = separados;
+  const [, token] = separated;
 
   try {
     const tokenInfo = jwt.verify(token, req.app.get('jwt-secret'));
@@ -28,7 +28,6 @@ const isAuthenticated = (req, res, next) => {
   }
 
 };
-
 
 
 module.exports = {
