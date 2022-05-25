@@ -2,12 +2,12 @@ const appiConfig = require('./appiConfig');
 const express = require('express');
 const passport = require('passport');
 require('./authentication/passport');
-const {auth} = require('./middlewares/auth.middleware');
+const auth = require('./middlewares/auth.middleware');
 
 const userRouter = require('./router/user.router');
 const appicomicsRouter = require('./router/appiComics.router');
 const appidb = require('./appidb');
-const logger =require('./middlewares/logger.middleware');
+const logger = require('./middlewares/logger.middleware');
 
 const PORT = appiConfig.PORT;
 const appiserver = express();

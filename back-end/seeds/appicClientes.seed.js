@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const appidb = require('../appidb');
+const appidb = require('../../back-end/appiConfig');
 const AppiRegister = require('../models/AppiUser');
 
 const clientesRegister = [

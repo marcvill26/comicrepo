@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const appidb = require('../appidb');
+const appidb = require('../../back-end/appidb');
 const Comics = require('../models/AppiComics');
 
 const comics = [

@@ -1,4 +1,4 @@
-const appiConfig = require('./appiConfig');
+const appiConfig = require('../back-end/appiConfig');
 const mongoose = require('mongoose');
 
 const DB_URL = appiConfig.DB_URL;
