@@ -12,6 +12,13 @@ const logger = require('./middlewares/logger.middleware');
 const PORT = appiConfig.PORT;
 const appiserver = express();
 
+appidb();
+appiserver.use((req, res, next) => {
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, PATCH')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Headers', 'Content-Type')
+    next()
+})
 appiserver.set('jwt-secret', appiConfig.JWT_SECRET);
 
 appiserver.use(express.json());
@@ -24,8 +31,8 @@ appiserver.get('/', (req, res) =>{
 });
 
 
-appiserver.use('/AppiComics',[logger], appicomicsRouter);
-appiserver.use('/AppiRegisterUser',[logger, auth.isAuthenticated],userRouter);
+appiserver.use('/appi/comics',appicomicsRouter);
+appiserver.use('/appi/registerUser',[auth.isAuthenticated],userRouter);
 
 appiserver.use('*',(req, res, next) =>{
     const error = new Error('Ruta no encontradas');
