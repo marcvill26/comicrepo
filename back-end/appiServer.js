@@ -5,7 +5,7 @@ require('./authentication/passport');
 const auth = require('./middlewares/auth.middleware');
 
 const userRouter = require('./router/user.router');
-const appicomicsRouter = require('./router/appiComics.router');
+const comicsRouter = require('./router/appiComics.router');
 const appidb = require('./appidb');
 const logger = require('./middlewares/logger.middleware');
 
@@ -22,23 +22,26 @@ appiserver.use((req, res, next) => {
 appiserver.set('jwt-secret', appiConfig.JWT_SECRET);
 
 appiserver.use(express.json());
-appiserver.use(express.urlencoded({ extended: false }));
+appiserver.use(express.urlencoded({ extended: true }));
 
-appiserver.use(passport.initialize());
+//appiserver.use(passport.initialize());
 
 appiserver.get('/', (req, res) =>{
     res.status(200).send('Server is up & running');
 });
 
 
-appiserver.use('/appi/comics',appicomicsRouter);
+appiserver.use('/appi/comics',comicsRouter);
 appiserver.use('/appi/registerUser',[auth.isAuthenticated],userRouter);
+appiserver.use('/api/info', (req, res, next) => {
+    return next(setError(200, 'INFO'))
+})
 
-appiserver.use('*',(req, res, next) =>{
-    const error = new Error('Ruta no encontradas');
-    error.status=404;
-    return next(error);
-});
+// appiserver.use('*',(req, res, next) =>{
+//     const error = new Error('Ruta no encontradas');
+//     error.status=404;
+//     return next(error);
+// });
 
 appiserver.use((err, _req, res, _next) => {
     return res
