@@ -69,6 +69,7 @@ comicsRouter.get('/:id',(req, res, next) => {
         });
 });
 
+
 comicsRouter.post('/', (req, res, next) => {
     const imageComic = req.file_url? req.file_url: undefined;
     const newComic = new Comics({

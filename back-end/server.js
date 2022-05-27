@@ -3,7 +3,7 @@ const express = require('express');
 const passport = require('passport');
 require('./authentication/passport');
 const {auth} = require('./middlewares/auth.middleware');
-
+const comicsRouter = require('./router/appiComics.router')
 const usersRouter = require('./router/user.router');
 const db = require('./db');
 
@@ -26,6 +26,7 @@ server.get('/', (req, res) =>{
 
 
 server.use('/users',usersRouter);
+server.use('/comics',comicsRouter);
 
 server.use('*',(req, res, next) =>{
     const error = new Error('Route not found');
