@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {BiCartAlt} from "react-icons/bi";
+
 const Navbar = () => {
     return (
         <nav className="menu">
@@ -9,9 +9,9 @@ const Navbar = () => {
             <Link to='/DcComics' className="menu__link menu__link--dc">dc comics</Link>
             <Link to='/Shop' className="menu__link">shop</Link>
             <Link to='/Register' className="menu__link">register</Link>
-            <div>
-                <a href="#" className="BiCartAlt"><BiCartAlt/></a>
-            </div>
+            <Link to="/Admin" className="menu__link">admin comics</Link>
+            <Link to="/AdminShop" className="menu__link">admin shop</Link>
+            
         </nav>
     );
 }

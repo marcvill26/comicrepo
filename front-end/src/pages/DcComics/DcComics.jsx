@@ -12,7 +12,7 @@ const DcComics = () => {
     },[]);
 
     return (
-        <div className="dc-list">
+        <div className={"dc-list"}>
            {dccomics.map((comicsDc) => {
             return(
                 <DcComic
