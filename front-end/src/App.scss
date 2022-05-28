@@ -1,11 +1,12 @@
 @import './components/NavBar/navBar';
-
+@import './pages/AdminPageComics/AdminPageComicStyle';
 @import './pages/Home/homeStyle';
 @import './pages/Marvelcomics/marvelStyles';
 @import './pages/DcComics/dcComicsStyle';
 @import './pages/Shop/shopStyle';
 @import './pages/Register/registerStyle';
 @import './components/Footer/footer';
+@import './components/Search/Search.scss';
 .App {
   font-family: 'Russo One', sans-serif;
 }

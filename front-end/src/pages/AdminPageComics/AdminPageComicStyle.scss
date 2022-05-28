@@ -1,0 +1,45 @@
+.container{
+   display:flex;
+   flex-wrap: wrap;
+   justify-content:center;
+   align-items:center;
+   background-color:rgb(255, 255, 255);
+   width:30%;
+   height:600px;
+   &__hijo{
+      padding:1rem;
+     background-color:red;
+     width: 450px;
+     height:480px;
+   }
+  
+}
+.form{
+   
+   display:flex;
+   flex-direction:column;
+}
+label{
+   padding: 0.3em;
+}
+.button{
+   display:flex;
+   position:relative;
+   justify-content:center;
+   top:15px;
+   align-items: center;
+   &__agregar{
+      margin-right: 30px;
+      border-radius:10px;
+      background:none;
+      padding:10px;
+      cursor: pointer;
+   }
+   &__eliminar{
+      margin-right: 30px;
+      border-radius:10px;
+      background:none;
+      padding:10px;
+      cursor: pointer;
+   }
+}
