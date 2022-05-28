@@ -1,4 +1,4 @@
-/* const logger = (req, res, next) => {
+const logger = (req, res, next) => {
   const date = new Date();
   const url = req.originalUrl;
   const method = req.method;
@@ -6,4 +6,4 @@
   return next();
 };
 
-module.exports = logger; */
+module.exports = logger; 
