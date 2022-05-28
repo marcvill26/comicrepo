@@ -1,7 +1,7 @@
 const config = require('./config');
 const express = require('express');
 const passport = require('passport');
-require('./authentication/passport');
+
 const {auth} = require('./middlewares/auth.middleware');
 const comicsRouter = require('./router/appiComics.router')
 const usersRouter = require('./router/user.router');

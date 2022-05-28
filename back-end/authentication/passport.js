@@ -2,6 +2,10 @@ const passport = require('passport');
 const passportLocal = require('passport-local');
 const bcrypt = require('bcrypt');
 
+const passport = require('passport');
+require('./authentication/passport');
+
+
 const User = require('../models/User');
 const { isValidPassword, isValidEmail } = require('./validators');
 

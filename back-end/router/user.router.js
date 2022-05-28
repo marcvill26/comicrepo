@@ -7,9 +7,9 @@ userRouter.get('/register', (req, res, next) => {
 });
 
 userRouter.post('/register', (req, res, next) => {
-    const { email, name } = req.body;
+    const { email, users, password } = req.body;
 
-    if (!email || !name) {
+    if (!email || !users || !password) {
         const error = 'Fill all the fields'
         return res.render('register', { error });
     }

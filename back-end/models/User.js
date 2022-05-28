@@ -6,9 +6,9 @@ const userSchema = new Schema ({
     users: {type: String, required:true},
     email:{type: String, required:true},
     password:{type: String, required:true},
-    age: {type: Number, required: true},
-    role:{type:String, required:true},
-    //Comics:[{type: mongoose.Types.ObjectId, ref:'Comic'}],
+    age: {type: Number},
+    role:{type:String}
+   
 },{
     timestamps:true
 });
