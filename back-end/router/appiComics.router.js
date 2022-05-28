@@ -96,7 +96,7 @@ comicsRouter.post('/', (req, res, next) => {
 
 });
 
-comicsRouter.put('/:id', (req, res, next) => {
+comicsRouter.put('/:id',[auth.isAuthenticated], (req, res, next) => {
     const id = req.params.id;
 
     return Comics.findByIdAndUpdate(id, {$set: req.body}, {new:true})
@@ -110,7 +110,7 @@ comicsRouter.put('/:id', (req, res, next) => {
         });
 });
 
-comicsRouter.delete('/:id', (req, res, next) => {
+comicsRouter.delete('/:id',[auth.isAuthenticated], (req, res, next) => {
     const id = req.params.id;
     return Comics.findByIdAndDelete(id)
         .then(() => {
