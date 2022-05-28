@@ -4,10 +4,12 @@ import NavBar from './components/NavBar/NavBar';
 import Home from '../src/pages/Home/Home';
 import Marvelcomics from '../src/pages/Marvelcomics/Marvelcomics';
 import DcComics from '../src/pages/DcComics/DcComics';
-import Shop from '../src/pages/Shop/Shop';
+import Shop from './pages/Shop/Shoplist';
 import Register from '../src/pages/Register/Register';
 import Footer from './components/Footer/Footer';
+
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+
 import './App.scss';
 
 function App() {

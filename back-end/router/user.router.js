@@ -5,7 +5,16 @@ const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 const usersRouter = express.Router();
 
+<<<<<<< HEAD
+const usersRouter = express.Router();
+
+
+usersRouter.post('/Register', (req, res, next) => {
+
+    const callback = (error, usuario) => {
+=======
 usersRouter.post('/register', (req, res, next) => {
+>>>>>>> b71864cdedd7d945efb2f402c0baef5e65d1f9de
 
     const callback = (error, user) => {
         if (error) {
