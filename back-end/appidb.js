@@ -1,7 +1,7 @@
-const appiConfig = require('../back-end/appiConfig');
+const config = require('./config');
 const mongoose = require('mongoose');
 
-const DB_URL = appiConfig.DB_URL;
+const DB_URL = config.DB_URL;
 
 const connectDB = () => mongoose.connect(DB_URL,{
     useNewUrlParser: true,

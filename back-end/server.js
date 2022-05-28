@@ -5,6 +5,7 @@ require('./authentication/passport');
 const {auth} = require('./middlewares/auth.middleware');
 const comicsRouter = require('./router/appiComics.router')
 const usersRouter = require('./router/user.router');
+const productsRouter= require('./router/products.router');
 const db = require('./db');
 
 const PORT = config.PORT;
@@ -27,6 +28,7 @@ server.get('/', (req, res) =>{
 
 server.use('/users',usersRouter);
 server.use('/comics',comicsRouter);
+server.use('products',productsRouter);
 
 server.use('*',(req, res, next) =>{
     const error = new Error('Route not found');

@@ -1,10 +1,23 @@
 const mongoose = require('mongoose');
-const appidb = require('../../back-end/appiConfig');
-const AppiRegister = require('../models/AppiUser');
+const appidb = require('../appidb');
+const config = require('../config');
+const AppiRegister = require('../models/User');
 
 const clientesRegister = [
+     {
+        users: "marcos",
+        email:"marcv@gmail.com",
+        password: "12345678.B",
+        age: 35,
+        role:"admin",
+    },
     {
-        name: 'Marcos', lastName:'Villegas', age: 35},
+        users: "estefany",
+        age: 26,
+        role:"admin",
+        email:"stefany@gmail.com",
+        password: "12345678.B",
+    }
 ];
 
 const clientesRegisterDocument = clientesRegister.map(cliente => new AppiRegister(cliente));

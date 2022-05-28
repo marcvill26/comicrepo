@@ -12,6 +12,8 @@ const signIn = (user, secret) => {
     );
 
     return token;
+    
 };
 
 module.exports = { signIn };
+

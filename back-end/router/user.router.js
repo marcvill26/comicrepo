@@ -1,55 +1,75 @@
 const express = require('express');
 const passport = require('passport');
+const userRouter = express.Router();
 
-const { signIn } = require('../../back-end/authentication/jsonwebtoken');
-
-const { isAuthenticated } = require('../../back-end/middlewares/auth.middleware');
-
-const usersRouter = express.Router();
-
-usersRouter.post('/register', (req, res, next) => {
-
-    const callback = (error, user) => {
-        if (error) {
-            console.log('Error entering callback', error);
-            return next(error);
-        }
-        return res.status(201).json(user);
-    };
-
-    passport.authenticate('register', callback)(req);
-
+userRouter.get('/register', (req, res, next) => {
+    return res.render('register');
 });
 
-usersRouter.post('/login', (req, res, next) => {
+userRouter.post('/register', (req, res, next) => {
+    const { email, name } = req.body;
 
-    const callback = (error, user) => {
+    if (!email || !name) {
+        const error = 'Fill all the fields'
+        return res.render('register', { error });
+    }
+
+    const done = (error, user) => {
+
         if (error) {
             return next(error);
         }
 
-        const token = signIn(user, req.app.get('jwt-secret'));
-
-        return res.status(200).json({ userId: user._id, token });
+        req.logIn(user, (error) => {
+            if (error) {
+                return next(error);
+            }
+            return res.redirect('/');
+        });
     };
 
-    passport.authenticate('login', callback)(req);
+    passport.authenticate('register', done)(req);
+});
+
+userRouter.get('/login', (req, res, next) => {
+    return res.render('login');
+});
+
+userRouter.post('/login', (req, res, next) => {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        const error = 'Fill all the fields'
+        return res.render('register', { error });
+    }
+
+    const done = (error, user) => {
+        if (error) return next(error);
+
+        req.logIn(user, (error, user) => {
+            if (error) {
+                return next(error);
+            };
+
+            return res.redirect('/');
+        });
+    };
+
+    passport.authenticate('login', done)(req);
+});
+
+userRouter.post('/logout', (req, res, next) => {
+    if (req.user) {
+        req.logout();
+        
+        req.session.destroy(() => {
+            res.clearCookie('connect.sid');
+            return res.redirect('/');
+        });
+    } else {
+        return res.status(200).json('No user found');
+    }
 
 });
 
-
-usersRouter.post('/logout', [isAuthenticated], (req, res, next) => {
-
-    // if (!req.authority) {
-
-    //     return res.sendStatus(304);
-
-    //     // res.status(304).send();
-
-    // }
-
-    return res.status(200).json('Closed user session');
-
-});
-
-module.exports = usersRouter;
+module.exports = userRouter;

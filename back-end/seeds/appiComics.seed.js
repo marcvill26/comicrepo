@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const appidb = require('../../back-end/appidb');
+const config = require('../config');
 const Comics = require('../models/AppiComics');
+const appidb = require('../appidb');
 
 const comics = [
     {
@@ -12,9 +13,33 @@ const comics = [
         penciler:'Mark Gagley',
         image:'https://www.zonanegativa.com/imagenes/2016/03/Ultimate-Spider-Man-5-cover.jpg',
         issues:166,
-        id:1
+      
 
 },
+{
+    hero: 'daredevil', 
+    nameHero:'matt murdock',
+    writer:'frank miller',
+    year:2000,
+    description:'Spider-Man has spider-like abilities including superhuman strength and the ability to cling to most surfaces.',
+    penciler:'Mark Gagley',
+    image:'https://www.zonanegativa.com/imagenes/2016/03/Ultimate-Spider-Man-5-cover.jpg',
+    issues:166,
+    
+
+},
+{
+    hero: 'batman', 
+    nameHero:'bruce wyne',
+    writer:'pepito',
+    year:2000,
+    description:'Spider-Man has spider-like abilities including superhuman strength and the ability to cling to most surfaces.',
+    penciler:'Mark Gagley',
+    image:'https://www.zonanegativa.com/imagenes/2016/03/Ultimate-Spider-Man-5-cover.jpg',
+    issues:166,
+    
+
+}
 ];
 
 const comicsDocument = comics.map(comic => new Comics(comic));
