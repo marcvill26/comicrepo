@@ -1,5 +1,5 @@
 import React from "react";
-import { useComics } from "../../hooks/useComics";
+import { useComics } from "../../hooks";
 
 const Search = () => {
   const { buscar } = useComics();
