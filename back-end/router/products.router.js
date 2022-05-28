@@ -3,18 +3,9 @@ const passport = require('passport');
 const { signIn } = require('../authentication/jsonwebtoken');
 const { isAuthenticated } = require('../middlewares/auth.middleware');
 
-const usersRouter = express.Router();
+const productsRouter = express.Router();
 
-<<<<<<< HEAD
-const usersRouter = express.Router();
-
-
-usersRouter.post('/Register', (req, res, next) => {
-
-    const callback = (error, usuario) => {
-=======
-usersRouter.post('/register', (req, res, next) => {
->>>>>>> b71864cdedd7d945efb2f402c0baef5e65d1f9de
+prouductsRouter.post('/register', (req, res, next) => {
 
     const callback = (error, user) => {
         if (error) {
@@ -28,7 +19,7 @@ usersRouter.post('/register', (req, res, next) => {
 
 });
 
-usersRouter.post('/login', (req, res, next) => {
+productsRouter.post('/login', (req, res, next) => {
 
     const callback = (error, user) => {
         if (error) {
@@ -45,18 +36,18 @@ usersRouter.post('/login', (req, res, next) => {
 });
 
 
-usersRouter.post('/logout', [isAuthenticated], (req, res, next) => {
+productsRouter.post('/logout', [isAuthenticated], (req, res, next) => {
 
-    // if (!req.authority) {
+    if (!req.authority) {
 
-    //     return res.sendStatus(304);
+    return res.sendStatus(304);
 
-    //     // res.status(304).send();
+    res.status(304).send();
 
-    // }
+    }
 
     return res.status(200).json('Closed user session');
 
 });
 
-module.exports = usersRouter;
+module.exports = productsRouter;
